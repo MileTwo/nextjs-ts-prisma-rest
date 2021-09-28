@@ -1,10 +1,16 @@
 // you want to import from test-utils instead of testing-library/react since we overwrote the render function to support our wrapper providers
-import { render, screen } from '../test-utils';
-import Home, { getServerSideProps } from '../../pages/index';
 import { tools } from '../../lib/tools';
-import { PrismaClient } from '@prisma/client';
+import Home from '../../pages/index';
+import { Context, createMockContext, MockContext } from '../context';
+import { render, screen } from '../test-utils';
 
 describe('Home page', () => {
+    let mockCtx: MockContext
+    let ctx: Context
+    beforeEach(() => {
+        mockCtx = createMockContext()
+        ctx = mockCtx as unknown as Context
+    })
     it('should render without errors', async () => {
         render(
             <Home
@@ -26,11 +32,5 @@ describe('Home page', () => {
         // name
         // @ts-ignore
         expect(firstTool.querySelector('p', { name: tools[0].name })).toBeInTheDocument();
-    });
-    it('serverSideProps', async () => {
-        const prisma = new PrismaClient();
-        // @ts-ignore
-        const response = await getServerSideProps();
-        expect(response).toEqual({ props: { tools: await prisma.tool.findMany() } });
     });
 });
