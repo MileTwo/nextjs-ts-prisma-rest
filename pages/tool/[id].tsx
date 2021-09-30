@@ -1,12 +1,11 @@
-import { Button, Grid, Theme, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Button, Grid, Theme, Typography, Breadcrumbs } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import Layout from '../../components/layout';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Image from '../../components/Image';
 import restEndpoints from '../../lib/restEndpoints';
 import { fetcher } from '../../lib/fetcher';

@@ -1,10 +1,8 @@
 import { GetServerSideProps } from 'next';
 import { Typography, Theme, List, Grid, Button } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
+import { createStyles, makeStyles } from '@mui/styles';
 import useSWR from 'swr';
 import Layout from '../components/layout';
-
 import prisma, { Tool } from '../services/prisma';
 import restEndpoints from '../lib/restEndpoints';
 import { fetcher } from '../lib/fetcher';

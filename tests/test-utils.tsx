@@ -7,12 +7,10 @@ import { NextRouter } from 'next/router';
 import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
 import theme from '../lib/theme';
 
-
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface DefaultTheme extends Theme {}
 }
-
 
 export * from '@testing-library/react';
 

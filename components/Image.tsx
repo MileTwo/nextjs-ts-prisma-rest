@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
 import NextImage from 'next/image';
 import { Avatar, Theme } from '@mui/material';
-
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { createStyles, makeStyles } from '@mui/styles';
 
 interface Props {
     image: string | null;
