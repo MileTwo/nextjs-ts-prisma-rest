@@ -31,7 +31,7 @@ interface Props {
 export default function Home({ tools }: Props) {
     const classes = useStyles();
     // CSR(Client-side rendering) example
-    const { data } = useSWR<Tool[]>(restEndpoints.tools, fetcher, { initialData: tools });
+    const { data } = useSWR<Tool[]>(restEndpoints.tools, fetcher, { fallbackData: tools });
     const [dialogOpen, setDialogOpen] = useState(false);
 
     return (
