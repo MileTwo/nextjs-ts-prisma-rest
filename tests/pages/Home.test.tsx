@@ -1,16 +1,9 @@
 // you want to import from test-utils instead of testing-library/react since we overwrote the render function to support our wrapper providers
 import { tools } from '../../lib/tools';
 import Home from '../../pages/index';
-import { Context, createMockContext, MockContext } from '../context';
 import { render, screen } from '../test-utils';
 
 describe('Home page', () => {
-    let mockCtx: MockContext
-    let ctx: Context
-    beforeEach(() => {
-        mockCtx = createMockContext()
-        ctx = mockCtx as unknown as Context
-    })
     it('should render without errors', async () => {
         render(
             <Home
