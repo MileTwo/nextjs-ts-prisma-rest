@@ -5,12 +5,13 @@ import { Context, createMockContext, MockContext } from '../context';
 import { render, screen } from '../test-utils';
 
 describe('Home page', () => {
-    let mockCtx: MockContext
-    let ctx: Context
+    let mockCtx: MockContext;
+    // @ts-ignore
+    let ctx: Context;
     beforeEach(() => {
-        mockCtx = createMockContext()
-        ctx = mockCtx as unknown as Context
-    })
+        mockCtx = createMockContext();
+        ctx = mockCtx as unknown as Context;
+    });
     it('should render without errors', async () => {
         render(
             <Home
