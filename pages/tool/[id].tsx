@@ -1,5 +1,5 @@
-import { Button, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import { Button, Grid, Theme, Typography, Breadcrumbs } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

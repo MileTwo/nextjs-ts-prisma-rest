@@ -1,15 +1,7 @@
 import Image from '../Image';
-import {
-    ListItem as MUIListItem,
-    ListItemAvatar,
-    Avatar,
-    ListItemText,
-    Grid,
-    Typography,
-    makeStyles,
-    createStyles,
-    Theme,
-} from '@material-ui/core';
+import { ListItem as MUIListItem, ListItemAvatar, Avatar, ListItemText, Grid, Typography, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+
 import Link from '../link/Link';
 
 const useStyles = makeStyles((theme: Theme) =>

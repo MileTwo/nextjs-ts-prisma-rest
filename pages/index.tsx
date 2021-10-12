@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
-import { makeStyles, createStyles, Typography, Theme, List, Grid, Button } from '@material-ui/core';
+import { Typography, Theme, List, Grid, Button } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import useSWR from 'swr';
 import Layout from '../components/layout';
-
 import prisma, { Tool } from '../services/prisma';
 import restEndpoints from '../lib/restEndpoints';
 import { fetcher } from '../lib/fetcher';
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         list: {
             minWidth: theme.breakpoints.values.sm,
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down('sm')]: {
                 width: '100%',
                 minWidth: 100,
             },
