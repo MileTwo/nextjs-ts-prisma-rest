@@ -1,10 +1,17 @@
 // you want to import from test-utils instead of testing-library/react since we overwrote the render function to support our wrapper providers
-import { render, screen } from '../test-utils';
-import Tool, { getServerSideProps } from '../../pages/tool/[id]';
 import { tools } from '../../lib/tools';
-import prisma from '../../services/prisma';
+import Tool, { getServerSideProps } from '../../pages/tool/[id]';
+import { Context, createMockContext, MockContext } from '../context';
+import { prismaMock } from '../singleton';
+import { render, screen } from '../test-utils';
 
 describe('Tool Page', () => {
+    let mockCtx: MockContext
+    let ctx: Context
+    beforeEach(() => {
+        mockCtx = createMockContext()
+        ctx = mockCtx as unknown as Context
+    })
     it('should render  a page without errors', async () => {
         render(<Tool tool={{ ...tools[0], id: 0 }} />);
 
@@ -26,19 +33,36 @@ describe('Tool Page', () => {
         expect(screen.getByText('Tool not found.')).toBeInTheDocument();
     });
 
-    it('should getServerSideProps', async () => {
-        const tool = await prisma().tool.findFirst();
-        // @ts-ignore
-        const props = await getServerSideProps({
-            params: { id: `${tool?.id}` },
-        });
-        expect(props).toEqual({ props: { tool } });
+    it('should create a tool', async () => {
+        const tool = {
+            id: 1,
+                name: 'name',
+                description: 'description',
+                link: 'link',
+                image: 'image'
+          }
+        
+          prismaMock.tool.create.mockResolvedValue(tool);
+
+          const createTool = await prismaMock.tool.create({
+            data: tool,
+          })
+
+          await expect(createTool).toEqual({
+            id: 1,
+            name: 'name',
+            description: 'description',
+            link: 'link',
+            image: 'image'
+          })
+          
     });
+    
     it('should return notFound getServerSideProps', async () => {
         // @ts-ignore
-        expect(await getServerSideProps({ params: {} })).toEqual({ notFound: true });
+        expect(await getServerSideProps(ctx, { params: {} })).toEqual({ notFound: true });
 
         // @ts-ignore
-        expect(await getServerSideProps({ params: { id: '-1' } })).toEqual({ notFound: true });
+        expect(await getServerSideProps(ctx, { params: { id: '-1' } })).toEqual({ notFound: true });
     });
 });

@@ -2,13 +2,13 @@ import { Button, Grid, Theme, Typography, Breadcrumbs } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import useSWR from 'swr';
-import { useRouter } from 'next/router';
-import Layout from '../../components/layout';
 import Image from '../../components/Image';
-import restEndpoints from '../../lib/restEndpoints';
+import Layout from '../../components/layout';
 import { fetcher } from '../../lib/fetcher';
+import restEndpoints from '../../lib/restEndpoints';
 import prisma, { Tool } from '../../services/prisma';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -37,7 +37,7 @@ export default function ToolInfo({ tool }: Props): ReactElement {
     const { query }: { query: URLParams } = useRouter();
     // client side fetch
     const { data = tool } = useSWR<Tool>(query?.id ? restEndpoints.tool(query.id) : null, fetcher, {
-        initialData: tool,
+        fallbackData: tool,
     });
 
     if (!data) {
