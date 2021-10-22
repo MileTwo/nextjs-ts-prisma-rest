@@ -1,6 +1,6 @@
 // you want to import from test-utils instead of testing-library/react since we overwrote the render function to support our wrapper providers
-import { tools } from '../../lib/tools';
-import Tool, { getServerSideProps } from '../../pages/tool/[id]';
+import { tools } from 'lib/tools';
+import Tool, { getServerSideProps } from 'pages/tool/[id]';
 import { Context, createMockContext, MockContext } from '../context';
 import { prismaMock } from '../singleton';
 import { render, screen } from '../test-utils';
@@ -41,7 +41,7 @@ describe('Tool Page', () => {
                 link: 'link',
                 image: 'image'
           }
-        
+
           prismaMock.tool.create.mockResolvedValue(tool);
 
           const createTool = await prismaMock.tool.create({
@@ -55,9 +55,9 @@ describe('Tool Page', () => {
             link: 'link',
             image: 'image'
           })
-          
+
     });
-    
+
     it('should return notFound getServerSideProps', async () => {
         // @ts-ignore
         expect(await getServerSideProps(ctx, { params: {} })).toEqual({ notFound: true });

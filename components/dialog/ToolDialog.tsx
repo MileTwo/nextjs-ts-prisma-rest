@@ -3,7 +3,7 @@ import { Tool } from '@prisma/client';
 import React, { ReactElement } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { mutate } from 'swr';
-import restEndpoints from '../../lib/restEndpoints';
+import restEndpoints from 'lib/restEndpoints';
 
 interface Props {
     open: boolean;

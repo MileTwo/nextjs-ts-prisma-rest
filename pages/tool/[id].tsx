@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import useSWR from 'swr';
-import Image from '../../components/Image';
-import Layout from '../../components/layout';
-import { fetcher } from '../../lib/fetcher';
-import restEndpoints from '../../lib/restEndpoints';
-import prisma, { Tool } from '../../services/prisma';
+import Image from 'components/Image';
+import Layout from 'components/layout';
+import { fetcher } from 'lib/fetcher';
+import restEndpoints from 'lib/restEndpoints';
+import prisma, { Tool } from 'services/prisma';
 
 const useStyles = makeStyles((theme: Theme) => ({
     description: {
