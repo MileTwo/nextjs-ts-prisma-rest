@@ -2,13 +2,13 @@ import { GetServerSideProps } from 'next';
 import { Typography, Theme, List, Grid, Button } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import useSWR from 'swr';
-import Layout from '../components/layout';
-import prisma, { Tool } from '../services/prisma';
-import restEndpoints from '../lib/restEndpoints';
-import { fetcher } from '../lib/fetcher';
+import Layout from 'components/layout';
+import prisma, { Tool } from 'services/prisma';
+import restEndpoints from 'lib/restEndpoints';
+import { fetcher } from 'lib/fetcher';
 import { useState } from 'react';
-import ToolDialog from '../components/dialog/ToolDialog';
-import ListItem, { Link } from '../components/list/ListItem';
+import ToolDialog from 'components/dialog/ToolDialog';
+import ListItem, { Link } from 'components/list/ListItem';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

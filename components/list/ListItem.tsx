@@ -1,8 +1,8 @@
-import Image from '../Image';
+import Image from 'components/Image';
 import { ListItem as MUIListItem, ListItemAvatar, Avatar, ListItemText, Grid, Typography, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 
-import Link from '../link/Link';
+import Link from 'components/link/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

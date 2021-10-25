@@ -1,6 +1,6 @@
 // you want to import from test-utils instead of testing-library/react since we overwrote the render function to support our wrapper providers
-import { tools } from '../../lib/tools';
-import Home from '../../pages/index';
+import { tools } from 'lib/tools';
+import Home from 'pages/index';
 import { render, screen } from '../test-utils';
 
 describe('Home page', () => {
