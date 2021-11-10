@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import useSWR from 'swr';
-import Image from 'components/Image';
+import Media from 'components/Media';
 import Layout from 'components/layout';
 import { fetcher } from 'lib/fetcher';
 import restEndpoints from 'lib/restEndpoints';
@@ -71,7 +71,7 @@ export default function ToolInfo({ tool }: Props): ReactElement {
                         </Breadcrumbs>
                     </Grid>
                     <Grid item xs={12} container justifyContent="center" alignItems="center">
-                        {data.image && <Image image={data.image} name={data.name} aria-hidden="true" />}
+                        {data.image && <Media image={data.image} name={data.name} aria-hidden="true" />}
                         <Typography variant="h2" className={classes.title}>
                             {data.name}
                         </Typography>
