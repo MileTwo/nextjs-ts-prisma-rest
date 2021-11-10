@@ -1,4 +1,4 @@
-import Image from 'components/Image';
+import Media from 'components/Media';
 import { ListItem as MUIListItem, ListItemAvatar, Avatar, ListItemText, Grid, Typography, Theme } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 
@@ -36,7 +36,7 @@ export default function ListItem({ name, image, link }: Props) {
                 <ListItemAvatar>
                     <Avatar alt={name} className={classes.avatar}>
                         {/* NextJS Image optimization example. Props are src(any file under the public dir), width, and height */}
-                        <Image image={image} name={name} />
+                        <Media image={image} name={name} />
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText>
