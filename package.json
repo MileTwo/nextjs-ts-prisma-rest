@@ -7,7 +7,7 @@
         "@emotion/react": "^11.6.0",
         "@emotion/styled": "^11.6.0",
         "@mui/material": "^5.2.0",
-        "@mui/styles": "^5.2.0",
+        "@mui/styles": "^5.2.3",
         "@prisma/client": "^3.5.0",
         "jest-esm-transformer": "^1.0.0",
         "jest-mock-extended": "^2.0.4",
