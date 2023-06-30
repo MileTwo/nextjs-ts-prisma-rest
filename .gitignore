@@ -20,6 +20,7 @@ yarn-error.log*
 
 # Prisma
 /prisma/*.db
+/dist
 
 # testing
 /coverage

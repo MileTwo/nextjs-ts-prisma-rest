@@ -38,7 +38,7 @@ export const tools: Omit<Tool, 'id'>[] = [
     {
         name: 'Jest',
         description:
-            'Jest is a delightful JavaScript Testing Framework with a focus on simplicity. It works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!',
+            'Jest is a delightful JavaScript Testing Framework with a focus on simplicity. It works with projects using: TypeScript, Node, React, Angular, Vue and more!',
         link: 'https://jestjs.io/',
         image: '/jest.svg',
     },

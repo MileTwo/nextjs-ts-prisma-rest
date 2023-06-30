@@ -1,5 +1,4 @@
-import { Button, Grid, Theme, Typography, Breadcrumbs } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Button, Grid, Typography, Breadcrumbs } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,19 +10,6 @@ import { fetcher } from 'lib/fetcher';
 import restEndpoints from 'lib/restEndpoints';
 import prisma, { Tool } from 'services/prisma';
 
-const useStyles = makeStyles((theme: Theme) => ({
-    description: {
-        maxWidth: '80ch',
-    },
-    root: {
-        padding: '.5em 2em',
-    },
-    title: {
-        paddingLeft: '1em',
-        color: theme.palette.text.secondary,
-    },
-}));
-
 interface Props {
     tool: Tool;
 }
@@ -33,7 +19,6 @@ interface URLParams {
 }
 
 export default function ToolInfo({ tool }: Props): ReactElement {
-    const classes = useStyles();
     const { query }: { query: URLParams } = useRouter();
     // client side fetch
     const { data = tool } = useSWR<Tool>(query?.id ? restEndpoints.tool(query.id) : null, fetcher, {
@@ -42,7 +27,7 @@ export default function ToolInfo({ tool }: Props): ReactElement {
 
     if (!data) {
         return (
-            <Grid container spacing={4} className={classes.root}>
+            <Grid container spacing={4} sx={{ padding: '.5em 2em' }}>
                 <Grid item xs={12}>
                     <Breadcrumbs aria-label="breadcrumb">
                         <Link href="/" passHref>
@@ -61,7 +46,7 @@ export default function ToolInfo({ tool }: Props): ReactElement {
     return (
         <>
             <Layout title={`${data.name} | Next.js example`}>
-                <Grid container spacing={4} className={classes.root}>
+                <Grid container spacing={4} padding={6}>
                     <Grid item xs={12}>
                         <Breadcrumbs aria-label="breadcrumb">
                             <Link href="/" passHref>
@@ -72,12 +57,15 @@ export default function ToolInfo({ tool }: Props): ReactElement {
                     </Grid>
                     <Grid item xs={12} container justifyContent="center" alignItems="center">
                         {data.image && <Media image={data.image} name={data.name} aria-hidden="true" />}
-                        <Typography variant="h2" className={classes.title}>
+                        <Typography
+                            variant="h2"
+                            sx={(theme) => ({ paddingLeft: '1em', color: theme.palette.text.secondary })}
+                        >
                             {data.name}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} container justifyContent="center">
-                        <Typography variant="body1" className={classes.description}>
+                        <Typography variant="body1" sx={{ maxWidth: '80ch' }}>
                             {data.description}
                         </Typography>
                     </Grid>

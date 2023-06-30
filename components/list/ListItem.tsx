@@ -1,20 +1,7 @@
 import Media from 'components/Media';
-import { ListItem as MUIListItem, ListItemAvatar, Avatar, ListItemText, Grid, Typography, Theme } from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
+import { ListItem as MUIListItem, ListItemAvatar, Avatar, ListItemText, Grid, Typography } from '@mui/material';
 
 import Link from 'components/link/Link';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        info: {
-            justify: 'center',
-            padding: theme.spacing(2),
-        },
-        avatar: {
-            backgroundColor: theme.palette.grey[200],
-        },
-    })
-);
 
 export type Link = {
     label: string;
@@ -29,12 +16,11 @@ type Props = {
 };
 
 export default function ListItem({ name, image, link }: Props) {
-    const classes = useStyles();
     return (
         <MUIListItem divider>
             <Grid container alignItems="center">
                 <ListItemAvatar>
-                    <Avatar alt={name} className={classes.avatar}>
+                    <Avatar alt={name} sx={(theme) => ({ backgroundColor: theme.palette.grey[200] })}>
                         {/* NextJS Image optimization example. Props are src(any file under the public dir), width, and height */}
                         <Media image={image} name={name} />
                     </Avatar>
@@ -47,11 +33,13 @@ export default function ListItem({ name, image, link }: Props) {
                     item
                     xs={12}
                     md={3}
-                    className={classes.info}
+                    sx={(theme) => ({ justify: 'center', padding: theme.spacing(2) })}
                     justifyContent="flex-end"
                     alignItems="center"
                 >
-                    <Link href={link.href} as={link?.as} label={link.label} />
+                    <Link href={link.href} as={link?.as}>
+                        {link.label}
+                    </Link>
                 </Grid>
             </Grid>
         </MUIListItem>

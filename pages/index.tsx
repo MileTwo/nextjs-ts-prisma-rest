@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { Typography, Theme, List, Grid, Button } from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
+import { Typography, List, Grid, Button } from '@mui/material';
 import useSWR from 'swr';
 import Layout from 'components/layout';
 import prisma, { Tool } from 'services/prisma';
@@ -10,26 +9,11 @@ import { useState } from 'react';
 import ToolDialog from 'components/dialog/ToolDialog';
 import ListItem, { Link } from 'components/list/ListItem';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        list: {
-            minWidth: theme.breakpoints.values.sm,
-            [theme.breakpoints.down('sm')]: {
-                width: '100%',
-                minWidth: 100,
-            },
-        },
-        root: {
-            padding: '2em',
-        },
-    })
-);
 interface Props {
     tools: Tool[];
 }
 
 export default function Home({ tools }: Props) {
-    const classes = useStyles();
     // CSR(Client-side rendering) example
     const { data } = useSWR<Tool[]>(restEndpoints.tools, fetcher, { fallbackData: tools });
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -37,7 +21,7 @@ export default function Home({ tools }: Props) {
     return (
         <>
             <Layout title="Next.js example">
-                <Grid container spacing={4} direction="column" className={classes.root}>
+                <Grid container spacing={4} direction="column" sx={{ padding: '2em' }}>
                     <Grid item container spacing={4} direction="column">
                         <Grid
                             item
@@ -60,7 +44,16 @@ export default function Home({ tools }: Props) {
                             <ToolDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
                         </Grid>
                         <Grid item container justifyContent="center">
-                            <List aria-label={tools.join(', ')} className={classes.list}>
+                            <List
+                                aria-label={tools.join(', ')}
+                                sx={(theme) => ({
+                                    minWidth: theme.breakpoints.values.sm,
+                                    [theme.breakpoints.down('sm')]: {
+                                        width: '100%',
+                                        minWidth: 100,
+                                    },
+                                })}
+                            >
                                 {data?.map(({ name, image, id }) => {
                                     const link: Link = {
                                         href: '/tool/[id]',
