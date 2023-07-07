@@ -4,3 +4,4 @@ charts/
 prisma/
 next-env.d.ts
 tests/
+next.config.js
